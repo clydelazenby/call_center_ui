@@ -1,0 +1,37 @@
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Chatkit demo</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/@pusher/chatkit-client@1/dist/web/chatkit.js"></script>
+    <script>const tokenProvider = new Chatkit.TokenProvider({
+  url: "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/12f3ac25-8c8b-4c68-9063-10c2ab69c6b2/token"
+});
+
+const chatManager = new Chatkit.ChatManager({
+  instanceLocator: "v1:us1:12f3ac25-8c8b-4c68-9063-10c2ab69c6b2",
+  userId: "clydelazenby@gmail.com",
+  tokenProvider: tokenProvider
+});
+
+chatManager
+  .connect()
+  .then(currentUser => {
+  	      currentUser.subscribeToRoomMultipart({
+        roomId: currentUser.rooms[0].id,
+        hooks: {
+          onMessage: message => {
+            console.log("Received message:", message)
+          }
+        }
+      });
+  })
+  .catch(error => {
+    console.error("error:", error);
+  });
+
+</script>
+  </body>
+</html>
+

@@ -1,0 +1,46 @@
+
+
+<div class="col-md-12">
+    <div class="row">
+      <div class="well user-list-wells">
+        <div class="row">
+
+        
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Birthday</th>
+      <th>Account</th>
+      <th>Product</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= customer.age %></td>
+        <td><%= customer.birthday %></td>
+        <td><%= customer.account %></td>
+        <td><%= customer.product %></td>
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    </div>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer', new_customer_path %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div>
